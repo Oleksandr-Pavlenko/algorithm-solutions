@@ -1,33 +1,43 @@
-/*
-package com.leetcode.algorithmen.linkedlist;
+package com.algorithmen.linkedlist;
 
+/*Given the head of a linked list head, in which each node contains an integer value.
+Between every pair of adjacent nodes, insert a new node with a value equal to the greatest common divisor of them.
+Return the linked list after insertion.
+The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers.*/
 public class InsertGreatestCommonDivisorsInLinkedList {
-
-*/
-/*    Given the head of a linked list head, in which each node contains an integer value.
-    Between every pair of adjacent nodes, insert a new node with a value equal to the greatest common divisor of them.
-    Return the linked list after insertion.
-    The greatest common divisor of two numbers is the largest positive integer that evenly divides both numbers.*//*
-
-
+    //runtime beats 72%, memory 13%
     public ListNode insertGreatestCommonDivisors(ListNode head) {
-        ListNode dummy = new ListNode(head.val);
-        ListNode next = dummy.next;
+        if (head == null || head.next == null) {
+            return head;
+        }
 
-        while (head != null) {
-            while (next.val != 0) {
-                int temp = next.val;
+        ListNode dummy = new ListNode();
+        ListNode current = dummy;
 
-            }
-
+        while (head != null && head.next != null) {
+            current.next = head;
+            head = head.next;
+            current = current.next;
+            current.next = new ListNode(gcd(current.val, current.next.val));
+            current = current.next;
 
         }
+
+        current.next = head;
+
+        return dummy.next;
     }
 
-    */
-/*Definition for singly-
-    linked list.*//*
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
 
+    /*Definition for singly linked list.*/
     public class ListNode {
         int val;
         ListNode next;
@@ -47,15 +57,14 @@ public class InsertGreatestCommonDivisorsInLinkedList {
 
     public void main(String[] args) {
         int[] values = {18, 6, 10, 3};
-        ListNode head = new ListNode(); // Начальный узел
-        ListNode current = head;  // Указатель current изначально указывает на head
+        ListNode head = new ListNode();
+        ListNode current = head;
         for (int value : values) {
-            current.next = new ListNode(value); // Создаем новый узел и связываем его
-            current = current.next; // Перемещаем current на новый узел
+            current.next = new ListNode(value);
+            current = current.next;
         }
 
         InsertGreatestCommonDivisorsInLinkedList insertGreatestCommonDivisorsInLinkedList = new InsertGreatestCommonDivisorsInLinkedList();
-        insertGreatestCommonDivisorsInLinkedList.insertGreatestCommonDivisors(head);
+        insertGreatestCommonDivisorsInLinkedList.insertGreatestCommonDivisors(head.next);
     }
 }
-*/
