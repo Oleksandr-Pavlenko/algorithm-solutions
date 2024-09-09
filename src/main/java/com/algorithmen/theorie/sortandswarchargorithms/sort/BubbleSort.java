@@ -1,8 +1,5 @@
 package com.algorithmen.theorie.sortandswarchargorithms.sort;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class BubbleSort {
     public void bubbleSort(int[] array) {
         // External loop for each pass through the array
