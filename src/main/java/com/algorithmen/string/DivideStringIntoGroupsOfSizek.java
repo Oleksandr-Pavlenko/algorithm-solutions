@@ -11,7 +11,7 @@ Given the string s, the size of each group k and the character fill, return a st
 
 */
 
-//time complexity 42%, memory 22%
+//time complexity 94%, memory 26%
 public class DivideStringIntoGroupsOfSizek {
     public String[] divideString(String s, int k, char fill) {
         int length = (s.length() + k - 1) / k;
@@ -19,12 +19,12 @@ public class DivideStringIntoGroupsOfSizek {
         for (int i = 0; i < length; i++) {
             int start = i * k;
             int end = Math.min(start + k, s.length());
-            String group = s.substring(start, end);
+            StringBuilder group = new StringBuilder(s.substring(start, end));
             while (group.length() < k) {
-                group += fill;
+                group.append(fill);
             }
 
-            result[i] = group;
+            result[i] = group.toString();
         }
 
         return result;
